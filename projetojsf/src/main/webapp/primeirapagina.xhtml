@@ -8,26 +8,31 @@
 </h:head>
 <h:body>
 	<h:form id="formPessoa">
-	<h1>Olá JSF</h1>
+	<h1>Cadastro Pessoas</h1>
 	
-	Nome:
 	<br/>
-	<h:inputText id="campoNome" value="#{pessoaBean.nome}"/>
+	<h:outputLabel value="Nome:"/>
 	<br/>
-	<h:inputSecret id="senha" value="#{pessoaBean.senha}"/>
+	<h:inputText value="#{pessoaBean.pessoa.nome}"/>
+	
 	<br/>
-	<h:inputTextarea id="texto" value="#{pessoaBean.texto}"/>
+	<h:outputLabel value="SobreNome:"/>
 	<br/>
-	<h:commandButton binding="#{pessoaBean.commandButton}" value="Adicionar Nome" action="#{pessoaBean.addNome}" />
+	<h:inputText value="#{pessoaBean.pessoa.sobrenome}"/>
 	
-	<h:dataTable value="#{pessoaBean.nomes}" var ="nome">
-		<h:column>
-			<h:outputText value="#{nome}"/>
-		</h:column>
+	<br/>
+	<h:outputLabel value="Idade"/>
+	<br/>
+	<h:inputText value="#{pessoaBean.pessoa.idade}"/>
 	
-	</h:dataTable>
-	
-	
+	<!-- 
+	<br/>
+	<h:outputLabel value="Data de nascimento"/>
+	<h:inputText value="#{pessoaBean.pessoa.dataNascimento}"/>
+	 -->
+	 <br/>
+	<h:commandButton value ="Salvar" action="#{pessoaBean.salvar}"/>
+		
 	</h:form>
 </h:body>
 

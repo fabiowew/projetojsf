@@ -1,74 +1,39 @@
 package br.com.cursojsf;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.html.HtmlCommandButton;
+
+import br.com.dao.DaoGeneric;
+import br.com.entidades.Pessoa;
 
 @ManagedBean(name = "pessoaBean")
 @ViewScoped
 public class PessoaBean {
 
-	private String nome;
-
-	private String senha;
-
-	private String texto;
-
-	private HtmlCommandButton commandButton;
-
-	private List<String> nomes = new ArrayList<String>();
-
-	public String addNome() {
-		nomes.add(nome);
-
-		if (nomes.size() > 2) {
-			commandButton.setDisabled(true);
-			return "paginanavegada?faces-redirect=true";
-		}
-
-		return "";// Retornando null ou vazio fica na mesma pagina -> outcome
+	private Pessoa pessoa = new Pessoa();
+	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
+	
+	public String salvar() {
+		daoGeneric.salvar(pessoa);
+		pessoa = new Pessoa();
+		return "";
 	}
 
-	public String getSenha() {
-		return senha;
+	public Pessoa getPessoa() {
+		return pessoa;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
-	public String getTexto() {
-		return texto;
+	public DaoGeneric<Pessoa> getDaoGeneric() {
+		return daoGeneric;
 	}
 
-	public void setTexto(String texto) {
-		this.texto = texto;
+	public void setDaoGeneric(DaoGeneric<Pessoa> daoGeneric) {
+		this.daoGeneric = daoGeneric;
 	}
+	
 
-	public HtmlCommandButton getCommandButton() {
-		return commandButton;
-	}
-
-	public void setCommandButton(HtmlCommandButton commandButton) {
-		this.commandButton = commandButton;
-	}
-
-	public void setNomes(List<String> nomes) {
-		this.nomes = nomes;
-	}
-
-	public List<String> getNomes() {
-		return nomes;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 }
