@@ -14,8 +14,7 @@ public class PessoaBean {
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
 	
 	public String salvar() {
-		daoGeneric.salvar(pessoa);
-		pessoa = new Pessoa();
+		pessoa = daoGeneric.merge(pessoa);
 		return "";
 	}
 
@@ -35,5 +34,14 @@ public class PessoaBean {
 		this.daoGeneric = daoGeneric;
 	}
 	
+	public String novo() {
+		pessoa = new Pessoa();
+		return "";
+	}
 
+	public String remove() {
+		daoGeneric.deletePorId(pessoa);
+		pessoa = new Pessoa();
+		return "";
+	}
 }

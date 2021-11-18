@@ -11,6 +11,11 @@
 	<h1>Cadastro Pessoas</h1>
 	
 	<br/>
+	<h:outputLabel value="Id:"/>
+	<br/>
+	<h:outputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
+	
+	<br/>
 	<h:outputLabel value="Nome:"/>
 	<br/>
 	<h:inputText value="#{pessoaBean.pessoa.nome}"/>
@@ -32,6 +37,9 @@
 	 -->
 	 <br/>
 	<h:commandButton value ="Salvar" action="#{pessoaBean.salvar}"/>
+	<h:commandButton value ="Novo" action="#{pessoaBean.novo}"/>
+	<h:commandButton value ="Remover" action="#{pessoaBean.remove}"/>
+	
 		
 	</h:form>
 </h:body>
