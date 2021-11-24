@@ -57,6 +57,7 @@ public class DaoGeneric<E> {
 	}	
 	
 	public List<E> getListEntity(Class<E> entidade){
+		
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
