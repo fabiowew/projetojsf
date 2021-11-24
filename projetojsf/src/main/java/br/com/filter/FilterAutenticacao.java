@@ -32,13 +32,14 @@ public class FilterAutenticacao implements Filter{
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		
-		Pessoa usuarioLogado = (Pessoa) session.getAttribute("usuarioLogado");
+		Pessoa usuariologado = (Pessoa) session.getAttribute("usuariologado");
 		
 		String url = req.getServletPath();
 		
-		if(!url.equalsIgnoreCase("index.jsf") && usuarioLogado == null){
+		if(!url.equalsIgnoreCase("index.jsf") && usuariologado == null){
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsf");
 			dispatcher.forward(request, response);
+			
 			return;
 			
 		}else {
