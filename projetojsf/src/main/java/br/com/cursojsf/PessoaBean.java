@@ -15,13 +15,19 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import org.hibernate.mapping.PrimaryKey;
 
 import com.google.gson.Gson;
 
 import br.com.dao.DaoGeneric;
+import br.com.entidades.Cidades;
+import br.com.entidades.Estados;
 import br.com.entidades.Pessoa;
+import br.com.jpautil.JPAUtil;
 import br.com.repository.IDaoPessoa;
 import br.com.repository.IDaoPessoaImpl;
 
@@ -34,6 +40,10 @@ public class PessoaBean {
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	
 	private IDaoPessoa iDaoPessoa = new IDaoPessoaImpl();
+	
+	private List<SelectItem> estados;
+	
+	private List<SelectItem> cidades;
 
 	public void pesquisaCep(AjaxBehaviorEvent event) {
 		
@@ -159,4 +169,44 @@ public class PessoaBean {
 		return pessoaUser.getPerfilUser().equals(acesso);
 	}
 
+	public List<SelectItem> getEstados() {
+		estados = iDaoPessoa.litaEstados();
+		return estados;
+	}
+	
+	public void carregaCidades(AjaxBehaviorEvent event) {
+		
+		String codigoEstado = (String) event.getComponent().getAttributes().get("submittedValue");
+		
+		if(codigoEstado != null) {
+			System.out.println(codigoEstado);
+			Estados estado = JPAUtil.getEntityManager().find(Estados.class, Long.parseLong(codigoEstado));
+		
+			if(estado != null) {
+				pessoa.setEstados(estado);
+				
+				List<Cidades> cidades = JPAUtil.getEntityManager().createQuery("from Cidades where estados.id = " + codigoEstado).getResultList();
+			
+				List<SelectItem> selectItemsCidade = new ArrayList<SelectItem>();
+				
+				for (Cidades cidade : cidades) {
+					selectItemsCidade.add(new SelectItem(cidade.getId(), cidade.getNome()));
+					
+				}
+				setCidades(selectItemsCidade);
+			
+			}
+		}
+	}
+
+	public List<SelectItem> getCidades() {
+		return cidades;
+	}
+
+	public void setCidades(List<SelectItem> cidades) {
+		this.cidades = cidades;
+	}
+	
+	
+	
 }
