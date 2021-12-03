@@ -13,9 +13,18 @@
 		
 		<properties>
 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+
+			<!-- Conexão com banco de dados da internet 
+			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/fborgesc_projetojsf" /> 
+			<property name="hibernate.connection.username" value="fborgesc" />
+			<property name="hibernate.connection.password" value="" />
+			-->
+			
+			<!-- Conexão com banco de dados Local-->
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/projetojsf" />
 			<property name="hibernate.connection.username" value="postgres" />
 			<property name="hibernate.connection.password" value="admin" />
+			 
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.show_sql" value="true" />

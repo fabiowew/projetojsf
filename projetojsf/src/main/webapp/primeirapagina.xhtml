@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
  	  xmlns:h="http://java.sun.com/jsf/html"
  	  xmlns:f="http://java.sun.com/jsf/core"
- 	  xmlns:ui = "http://java.sun.com/jsf/facelets"
- 	  xmlns:pt = "http://xmlns.jcp.org/jsf/passthrough">
+ 	  xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<title>Cadastro de Usuário</title>
@@ -141,7 +141,7 @@
 		</h:selectOneMenu>
 		
 		<h:outputLabel value="Cidades:"/>
-		<h:selectOneMenu value="#{pessoaBean.pessoa.cidades}" id="comboCidade" immediate="true">
+		<h:selectOneMenu value="#{pessoaBean.pessoa.cidades}" immediate="true" id="comboCidade">
 		 <f:selectItem itemLabel="--[Selecione]--" noSelectionOption="true"/>
 		 <f:selectItems value="#{pessoaBean.cidades}"/>
 		
@@ -162,8 +162,7 @@
 		</h:panelGroup>
 	</h:panelGrid>
 	
-		</h:form>
-		
+	</h:form>	
 	<h:form>
 	<h:dataTable value="#{pessoaBean.pessoas}" var="p" border="2" cellpadding="6" rendered="true">
 	
